@@ -208,7 +208,9 @@ def plot_ppoints(ppoints, inventory=None, label_stations=True, ax=None,
         ax = _get_geoaxes(crs=crs, latlons=ppoints)
     if inventory is not None:
         plot_stations(inventory, label_stations=label_stations, ax=ax)
-    kw = dict(s=50, marker='x', color='k', alpha=0.2, zorder=2)
+    kw = dict(s=50, marker='x', alpha=0.2, zorder=2)
+    if 'c' not in kwargs:
+        kw.update(dict(color='k'))
     kw.update(kwargs)
     ax.scatter(*list(zip(*ppoints))[::-1], transform=__pc(), **kw)
     return ax
